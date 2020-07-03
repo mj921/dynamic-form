@@ -116,6 +116,48 @@
                           :value="option.value"
                         ></el-option>
                       </el-select>
+                      <el-checkbox
+                        v-if="jtem.type === 'checkbox'"
+                        v-model="jtem.vmodelValue"
+                        :size="jtem.data.size"
+                        :disabled="jtem.data.disabled"
+                        :border="jtem.data.border"
+                      >
+                        {{ jtem.data.checkboxLabel }}
+                      </el-checkbox>
+                      <el-checkbox-group
+                        v-if="jtem.type === 'checkboxGroup'"
+                        v-model="jtem.vmodelValue"
+                        :size="jtem.data.size"
+                        :min="jtem.data.min"
+                        :max="jtem.data.max"
+                        :disabled="jtem.data.disabled"
+                        :text-color="jtem.data.textColor"
+                        :fill="jtem.data.fill"
+                      >
+                        <template v-if="jtem.data.showType === 'default'">
+                          <el-checkbox
+                            v-for="label in jtem.data.labelList"
+                            :key="
+                              'component-' + jtem.type + '-' + j + '-' + label
+                            "
+                            :label="label"
+                          >
+                            {{ label }}
+                          </el-checkbox>
+                        </template>
+                        <template v-else-if="jtem.data.showType === 'button'">
+                          <el-checkbox-button
+                            v-for="label in jtem.data.labelList"
+                            :key="
+                              'component-' + jtem.type + '-' + j + '-' + label
+                            "
+                            :label="label"
+                          >
+                            {{ label }}
+                          </el-checkbox-button>
+                        </template>
+                      </el-checkbox-group>
                     </el-form-item>
                   </draggable>
                 </el-form>
@@ -163,6 +205,14 @@ export default {
         {
           name: "下拉框",
           type: "select"
+        },
+        {
+          name: "复选框",
+          type: "checkbox"
+        },
+        {
+          name: "复选框组",
+          type: "checkboxGroup"
         }
       ],
       page: getConfig("page"),
@@ -207,12 +257,16 @@ export default {
   }
   .comp-list {
     display: flex;
+    flex-wrap: wrap;
     .comp-list-item {
       width: calc(50% - 5px);
       padding: 16px;
       box-sizing: border-box;
       border: 1px solid #f2f2f2;
       text-align: center;
+      &:not(:nth-child(-n + 2)) {
+        margin-top: 10px;
+      }
       &:nth-child(odd) {
         margin-right: 10px;
       }

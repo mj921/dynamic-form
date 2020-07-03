@@ -5,7 +5,14 @@ import createScript from "./createScript";
 const parseComponentConfig = function(config) {
   let data = {};
   config.props.forEach(prop => {
-    data[prop.key] = prop.getPropValue ? prop.getPropValue() : prop.value;
+    if (prop.key === "defaultValue") {
+      config.defaultValue = {
+        type: prop.type,
+        value: prop.getPropValue ? prop.getPropValue() : prop.value
+      };
+    } else {
+      data[prop.key] = prop.getPropValue ? prop.getPropValue() : prop.value;
+    }
   });
   config.data = data;
   if (config.children instanceof Array) {

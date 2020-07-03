@@ -25,6 +25,20 @@
         v-if="prop.type === 'boolean'"
         v-model="prop.value"
       ></el-switch>
+      <el-select
+        v-if="prop.type === 'tags'"
+        v-model="prop.value"
+        :placeholder="'请输入' + prop.name"
+        multiple
+        filterable
+        allow-create
+      ></el-select>
+      <el-input-number
+        v-if="prop.type === 'number'"
+        v-model="prop.value"
+        :min="prop.min"
+      />
+      <el-color-picker v-if="prop.type === 'color'" v-model="prop.value" />
       <div v-if="prop.type === 'option'" class="prop-type-option">
         <dl
           v-for="(option, optionIndex) in prop.value"

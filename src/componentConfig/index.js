@@ -2,11 +2,15 @@ import pageConfig from "./pageConfig";
 import inputConfig from "./inputConfig";
 import formConfig from "./formConfig";
 import selectConfig from "./selectConfig";
+import checkboxConfig from "./checkboxConfig";
+import checkboxGroupConfig from "./checkboxGroupConfig";
 const configs = {
   pageConfig,
   formConfig,
   inputConfig,
-  selectConfig
+  selectConfig,
+  checkboxConfig,
+  checkboxGroupConfig
 };
 const parseComponentConfig = function(config) {
   let _config = JSON.parse(
