@@ -1,0 +1,47 @@
+.show-page {
+  margin: 0 10px 20px 0;
+  padding: 0 10px;
+  background-color: #fff;
+  position: relative;
+  .page-title {
+    line-height: 50px;
+    font-size: 16px;
+    color: #333;
+    font-weight: bold;
+  }
+  .form-container {
+    min-height: 84px;
+    background-color: #fafbfd;
+    position: relative;
+    padding: 2px;
+    .form-title {
+      position: relative;
+      padding: 15px;
+      height: 14px;
+      background-color: #fff;
+      color: #606060;
+      z-index: 1;
+      span {
+        float: left;
+        padding-left: 10px;
+        border-left: 3px solid #4e78db;
+        font-size: 14px;
+        line-height: 1em;
+      }
+    }
+    .el-form-item {
+      box-sizing: border-box;
+      padding: 2px;
+      /deep/ {
+        .el-form-item__label {
+          position: relative;
+          z-index: 1;
+        }
+        .el-form-item__content {
+          position: relative;
+          z-index: 1;
+        }
+      }
+    }
+  }
+}
